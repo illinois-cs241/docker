@@ -104,7 +104,7 @@ connect_directly () {
     sshpass -p "$2" ssh -o StrictHostKeyChecking=no "$1@$3"
 }
 
-vmon() {
+cs341on() {
     if [ -z "$VM_HOSTNAME" ]; then
         echo "Please set the VM_HOSTNAME environment variable (export VM_HOSTNAME=<your vSphere VM>)" >&2
         return 1
@@ -155,7 +155,7 @@ EOF
     fi
 }
 
-vmssh() {
+cs341ssh() {
     if [ -z "$VM_HOSTNAME" ]; then
         echo "Please set the VM_HOSTNAME environment variable (export VM_HOSTNAME=<your vSphere VM>)" >&2
         return 1
@@ -190,7 +190,7 @@ EOF
                     poll_host_ping "$NETID" "$NETID_PASSWORD" "$VM_HOSTNAME"
                     PING_RESPONSE=$?
                     if [ "$PING_RESPONSE" -eq 0 ]; then 
-                        echo "$NETID_PASSWORD" | vmssh
+                        echo "$NETID_PASSWORD" | cs341ssh
                         return 0;
                     else
                         echo "VM did not come online, please try again..."  
